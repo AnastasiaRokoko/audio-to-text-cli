@@ -1,0 +1,10 @@
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 15%;
+}
+button {
+  background-color: aquamarine;
+  border-radius: 30px;
+}

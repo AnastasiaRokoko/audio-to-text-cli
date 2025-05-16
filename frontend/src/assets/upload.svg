@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <linearGradient id="viteGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#646cff"></stop>
+      <stop offset="100%" stop-color="#c069e6"></stop>
+    </linearGradient>
+  </defs>
+  <!-- Стрелка вверх -->
+  <path d="M12 16V4m0 0l-4 4m4-4l4 4" stroke="url(#viteGradient)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+  <!-- Плоский «файл» под стрелкой -->
+  <path d="M4 18h16v2H4z" fill="url(#viteGradient)"></path>
+</svg>

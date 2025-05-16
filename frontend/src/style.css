@@ -1,0 +1,94 @@
+:root {
+  font-family: system-ui;
+  line-height: 1.5;
+
+  /*темная тема*/
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  /*светлая тема*/
+  /* color: rgba(14, 14, 14, 0.87);
+  background-color: #ffffff; */
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.read-the-docs {
+  color: #888;
+  margin-top: 2rem;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 400;
+  font-family: inherit;
+  background-color: #ebe9e9;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+
+.mic-icon,
+.upload-icon {
+  height: 6em;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.mic-icon:hover,
+.upload-icon:hover {
+  filter: drop-shadow(0 0 28px #9999f0aa) drop-shadow(0 0 22px #0e68ddaa)
+    drop-shadow(0 0 4px rgba(255, 255, 255, 0.2));
+  transform: scale(1.1);
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 28px rgba(100, 108, 255, 0.6))
+      drop-shadow(0 0 22px rgba(192, 105, 230, 0.4));
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  50% {
+    filter: none;
+    transform: scale(1);
+    opacity: 0.6;
+  }
+}
+
+.mic-icon.recording,
+.upload-icon.recording {
+  animation: blink 1s ease-in-out infinite;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.control-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}

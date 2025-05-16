@@ -1,4 +1,5 @@
 import Fastify from "fastify";
+import cors from "@fastify/cors";
 import multipart from "@fastify/multipart";
 import fs from "fs";
 import path from "path";
@@ -6,9 +7,10 @@ import { pipeline } from "stream/promises";
 import { transcribeAudio } from "./whisper";
 
 export function createServer() {
-  //создание сервера и регистрация multipart/form-data
+  //создание сервера и регистрация multipart/form-data,cors
   const server = Fastify();
   server.register(multipart);
+  server.register(cors, { origin: true });
 
   // создание и проверка наличия папки temp
   const tempDir = path.resolve("temp");

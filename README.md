@@ -1,21 +1,60 @@
-# Audio-to-Text CLI (with OpenAI Whisper)
+# Audio-to-Text Playground (with OpenAI Whisper)
 
-A simple command-line utility built with Node.js and TypeScript that transcribes audio files into text using OpenAI's Whisper model.
+A simple **frontend + backend** project written in TypeScript that lets you **record from your microphone** or **upload an audio file** and transcribes it to text using OpenAI’s Whisper model.
 
-## Features
+---
 
-- Converts `.wav`, `.mp3`, and other audio formats to text
-- Uses OpenAI Whisper model via official API
-- Command-line interface using `yargs`
-- Proxy support (via `socks-proxy-agent`)
-- Includes unit tests with `vitest`
-- Prettier formatting support
+## ✨ Features
 
-## Installation
+- **Web UI**  
+  – Single-page interface built with Vite + TypeScript  
+  – “Начать запись” / “Стоп” via MediaRecorder API  
+  – “Загрузить файл” via `<input type="file">`  
+  – Shared transcript area for both modes
+- **Backend API**  
+  – Fastify server with `@fastify/multipart` & `@fastify/cors`  
+  – `/audio-to-text` endpoint accepts `multipart/form-data`  
+  – Uses OpenAI Whisper model via official SDK
+- **Networking**  
+  – Built-in proxy support (socks-proxy-agent)  
+  – CORS enabled for local dev
+- **Developer tooling**  
+  – TypeScript everywhere  
+  – Unit & integration tests with Vitest  
+  – Prettier code formatting
 
-Clone the repo:
+---
+
+## Getting Started
+
+You need **two terminals**—one for the backend, one for the frontend.
+
+### Backend+Frontend
+
+### 1. Clone the repo
 
 ```bash
-git clone https://github.com/AnastasiaRokoko/audio-to-text-cli.git
-cd audio-to-text-cli
+git clone https://github.com/AnastasiaRokoko/audio-to-text-playground.git
+cd audio-to-text-playground
+
+cd backend
 npm install
+npm run start
+
+
+cd ../frontend
+npm install
+npm run dev
+# → Vite dev server on http://localhost:5173
+
+```
+
+### 2.🔧 Tools & Stack
+
+Backend: Node.js, Fastify, @fastify/multipart, @fastify/cors, OpenAI SDK
+
+Frontend: Vite, TypeScript, native DOM API, fetch, MediaRecorder
+
+Shared: Vitest, Prettier
+
+Enjoy building and experimenting with real-time audio transcription! 🎙️✨

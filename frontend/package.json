@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@ics/gx-vector-search": "git+https://gitlab.ics-it.ru/ics/gx-ai-search.git#audioTextExtracting"
+    "@ics/gx-vector-search": "direct:https://gitlab.ics-it.ru/ics/gx-ai-search.git#audioTextExtracting"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",

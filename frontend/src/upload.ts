@@ -1,4 +1,4 @@
-import { sendAudio } from "./audioClient";
+import { AudioProcessingApiClient } from "@ics/gx-vector-search";
 
 export function setupUploader() {
   const input = document.getElementById("file-input") as HTMLInputElement;
@@ -7,6 +7,11 @@ export function setupUploader() {
   const icon = document.querySelector(
     ".upload-icon"
   ) as HTMLImageElement | null;
+
+  const client = new AudioProcessingApiClient({
+    baseUrl: "http://localhost:3005",
+    meta: { instanceName: "frontend-example" },
+  });
 
   button.disabled = true;
 
@@ -17,13 +22,16 @@ export function setupUploader() {
   button.addEventListener("click", async (e) => {
     e.preventDefault();
     if (!input.files?.length) return;
+
     const file = input.files[0];
     output.textContent = "Загружаем файл…";
     icon?.classList.add("recording");
+
     try {
-      const text = await sendAudio(file, file.name);
-      output.textContent = text;
+      const result = await client.transcribe({ audio: file });
+      output.textContent = result.text;
     } catch (err: any) {
+      console.error("Upload error:", err);
       output.textContent = `Error: ${err.message}`;
     } finally {
       icon?.classList.remove("recording");

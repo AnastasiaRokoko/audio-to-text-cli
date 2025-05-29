@@ -34,8 +34,8 @@ You need **two terminals**—one for the backend, one for the frontend.
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/AnastasiaRokoko/audio-to-text-playground.git
-cd audio-to-text-playground
+git clone https://github.com/AnastasiaRokoko/audio-to-text-cli.git
+cd audio-to-text-cli
 
 cd backend
 npm install

@@ -8,8 +8,12 @@
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
+  "dependencies": {
+    "@ics/gx-vector-search": "git+https://gitlab.ics-it.ru/ics/gx-ai-search.git#audioTextExtracting"
+  },
   "devDependencies": {
+    "@types/node": "^20.11.0",
     "typescript": "~5.8.3",
-    "vite": "^6.3.5"
+    "vite": "^5.0.11"
   }
 }

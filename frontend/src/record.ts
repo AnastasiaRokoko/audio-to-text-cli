@@ -1,43 +1,46 @@
-import { sendAudio } from "./audioClient";
+import { AudioProcessingApiClient, AudioRecorder } from "@ics/gx-vector-search";
 
 export function setupRecorder() {
   const btn = document.getElementById("record") as HTMLButtonElement;
   const output = document.getElementById("transcript") as HTMLElement;
   const icon = document.querySelector(".mic-icon") as HTMLImageElement | null;
 
-  let recorder: MediaRecorder | null = null;
-  let chunks: Blob[] = [];
-  let stream: MediaStream | null = null;
+  const recorder = new AudioRecorder();
+  const client = new AudioProcessingApiClient({
+    baseUrl: "http://localhost:3005",
+    meta: { instanceName: "frontend-example" },
+  });
 
-  async function handleStop() {
-    const blob = new Blob(chunks, { type: "audio/webm" });
+  async function handleStop(audioBlob: Blob) {
     try {
-      const text = await sendAudio(blob, "recording.webm");
-      output.textContent = text;
+      const result = await client.transcribe({ audio: audioBlob });
+      output.textContent = result.text;
     } catch (err: any) {
+      console.error("Transcription error:", err);
       output.textContent = `Error: ${err.message}`;
     }
-    // сброс состояния
-    chunks = [];
-    recorder = null;
     btn.textContent = "Начать запись";
   }
 
   btn.onclick = async () => {
-    if (!recorder || recorder.state === "inactive") {
-      if (!stream) {
-        stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    if (!recorder.isRecording()) {
+      try {
+        await recorder.start();
+        icon?.classList.add("recording");
+        btn.textContent = "Стоп";
+      } catch (err: any) {
+        output.textContent = `Error: ${err.message}`;
       }
-      recorder = new MediaRecorder(stream);
-      chunks = [];
-      recorder.ondataavailable = (e) => chunks.push(e.data);
-      recorder.onstop = handleStop;
-      recorder.start();
-      icon?.classList.add("recording");
-      btn.textContent = "Стоп";
-    } else if (recorder.state === "recording") {
-      recorder.stop();
-      icon?.classList.remove("recording");
+    } else {
+      try {
+        const audioBlob = await recorder.stop();
+        icon?.classList.remove("recording");
+        await handleStop(audioBlob);
+      } catch (err: any) {
+        output.textContent = `Error: ${err.message}`;
+        icon?.classList.remove("recording");
+        btn.textContent = "Начать запись";
+      }
     }
   };
 }

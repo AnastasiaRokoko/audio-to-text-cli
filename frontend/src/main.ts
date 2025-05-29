@@ -1,7 +1,9 @@
 import "./style.css";
-import { setupRecorder } from "./record.ts";
+import { setupRecorder } from "./record";
 import { setupUploader } from "./upload";
+// @ts-ignore
 import micIcon from "./assets/micro.svg";
+// @ts-ignore
 import uploadIcon from "./assets/upload.svg";
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `

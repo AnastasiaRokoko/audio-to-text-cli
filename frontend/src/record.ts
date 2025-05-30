@@ -7,7 +7,7 @@ export function setupRecorder() {
 
   const recorder = new AudioRecorder();
   const client = new AudioProcessingApiClient({
-    baseUrl: "http://localhost:3005",
+    baseUrl: "",
     meta: { instanceName: "frontend-example" },
   });
 

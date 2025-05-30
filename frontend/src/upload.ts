@@ -9,7 +9,7 @@ export function setupUploader() {
   ) as HTMLImageElement | null;
 
   const client = new AudioProcessingApiClient({
-    baseUrl: "http://localhost:3005",
+    baseUrl: "",
     meta: { instanceName: "frontend-example" },
   });
 

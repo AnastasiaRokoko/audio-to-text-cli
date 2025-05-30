@@ -5,7 +5,7 @@ export async function sendAudio(
   const form = new FormData();
   form.append("audio", file, filename);
 
-  const res = await fetch("http://localhost:3000/audio-to-text", {
+  const res = await fetch("/audio/transcribe", {
     method: "POST",
     body: form,
   });
